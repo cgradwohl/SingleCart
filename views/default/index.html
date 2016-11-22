@@ -11,6 +11,8 @@
 
 <div class="main_content">
     <div id="vue-div" style="display:none">
+
+
         <div class="control_bar container">
             <div class="search_div threequarters">
                 <span v-if="page=='prod'">
@@ -29,7 +31,9 @@
                     <button class="btn" v-on:click="goto('prod')"> Continue shopping </button>
                 </span>
             </div>
-        </div>
+        </div> <!-- control_bar container -->
+
+
 
         <div v-if="page=='prod'" id="products_list">
             <div v-for="product in products" class="container">
@@ -55,7 +59,9 @@
                 </div>
 
             </div>
-        </div>
+        </div><!-- porduct_list -->
+
+
 
         <div v-if="page=='cart'" id="cart_list">
             <div v-if="cart.length == 0" class="container">
@@ -87,9 +93,9 @@
                 Your total price: $ ${cart_total}
                 <button class="btn blue" v-on:click="pay()"><i class="fa fa-lg fa-credit-card"></i> Pay</button>
             </div>
-        </div>
+        </div><!-- cart_list -->
 
-    </div>
+    </div><!-- vue-div -->
 
 </div>
 
