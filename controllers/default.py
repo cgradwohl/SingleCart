@@ -15,22 +15,15 @@ def index():
 
 
 def get_products():
-    """Gets the list of products, possibly in response to a query."""
-    t = request.vars.q.strip()
-    if request.vars.q:
-        q = ((db.product.name.contains(t)) |
-             (db.product.description.contains(t)))
-    else:
-        q = db.product.id > 0
-    products = db(q).select(db.product.ALL)
-    # Fixes some fields, to make it easy on the client side.
+    """Gets the list of products from Lucas Products service."""
+    import requests
+    r = requests.get("http://luca-teaching.appspot.com/get_products")
+    result = r.json()
+    products = result['products']
     for p in products:
-        p.image_url = URL('download', p.image)
-        p.desired_quantity = min(1, p.quantity)
-        p.cart_quantity = 0
-    return response.json(dict(
-        products=products,
-    ))
+        p['desired_quantity'] = min(1, p['quantity'])
+        p['cart_quantity'] = 0
+    return response.json(dict( products=products, ))
 
 
 def purchase():
@@ -132,5 +125,3 @@ def call():
     supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
     """
     return service()
-
-
