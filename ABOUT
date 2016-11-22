@@ -1,2 +1,21 @@
 Write something about this app.
-Developed with web2py.
+Developed with web2py and vue.js.
+
+TO DO LIST:
+
+A. write a method called self.store_order = function(), that:
+    1. stores the order in the 'orders' table in the db
+    2. calls self.clear_cart()
+
+B. write a method called self.clear_cart() = function(), that:
+    1. clears the data in the cart
+
+C. add self.store_order() to 'Pay' button in the cart view
+D. add a new button called 'Clear Cart' that is attached to self.clear_cart()
+
+
+E. write a method called self.get_orders() = function(), that:
+    1. fetchs the orders from the db
+    2. displays the orders in the order table on index.html
+
+F. add an orders table to the Order History View

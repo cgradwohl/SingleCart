@@ -26,6 +26,12 @@ db.define_table('customer_order',
     Field('cart', 'blob'),
 )
 
+db.define_table('orders',
+    Field('username'),
+    Field('created_on', 'datetime', default=datetime.datetime.utcnow()),
+    Field('order_json', 'text') # Order information, in json
+)
+
 # Let's define a secret key for stripe transactions.
 from gluon.utils import web2py_uuid
 if session.hmac_key is None:

@@ -99,8 +99,9 @@ var app = function() {
 
     self.goto = function (page) {
         self.vue.page = page;
+
         if (page == 'cart') {
-            // prepares the form.
+            // prepares the cart form and stripe payment information.
             self.stripe_instance = StripeCheckout.configure({
                 key: 'pk_test_CeE2VVxAs3MWCUDMQpWe8KcX',    //put your own publishable key here
                 image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
