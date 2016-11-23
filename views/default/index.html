@@ -6,6 +6,7 @@
 <script>
     var products_url = "{{=URL('default', 'get_products')}}";
     var purchase_url = "{{=URL('default', 'purchase', hmac_key=session.hmac_key)}}"
+    var order_url = "{{=URL('default', 'store_order', user_signature=True)}}"
 </script>
 {{end}}
 
@@ -92,7 +93,7 @@
             </div>
             <div v-if="cart.length > 0" class="total_price">
                 Your total price: $ ${cart_total}
-                <button class="btn blue" v-on:click="pay()"><i class="fa fa-lg fa-credit-card"></i> Pay</button>
+                <button class="btn blue" v-on:click="store_order()"><i class="fa fa-lg fa-credit-card"></i> Pay</button>
                 <!-- v-on:click="method to create order object and store it in the db table called orders and clears the cart" -->
             </div>
         </div><!-- cart_list -->

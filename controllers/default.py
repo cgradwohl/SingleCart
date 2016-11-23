@@ -6,6 +6,7 @@
 # -------------------------------------------------------------------------
 
 import traceback
+import requests
 
 def index():
     """
@@ -16,7 +17,6 @@ def index():
 
 def get_products():
     """Gets the list of products from Lucas Products service."""
-    import requests
     r = requests.get("http://luca-teaching.appspot.com/get_products")
     result = r.json()
     products = result['products']
@@ -88,6 +88,13 @@ def view_orders():
     )
     return dict(form=form)
 
+@auth.requires_login()
+def store_order():
+    o_id = db.orders.insert(
+        order_json = request.vars.order_json
+    )
+    o = db.orders(o_id)
+    return response.json(dict(order=o))
 
 def user():
     """

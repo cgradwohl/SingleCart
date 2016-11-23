@@ -95,6 +95,18 @@ var app = function() {
         self.store_cart();
     };
 
+    self.store_order = function(){
+        var order = JSON.stringify(self.vue.cart);
+        $.post(order_url,
+            {
+                order_json: order,
+                
+            },
+            function(data){
+                console.log(data.order);
+            });
+    };
+
     self.customer_info = {}
 
     self.goto = function (page) {
@@ -167,7 +179,8 @@ var app = function() {
             buy_product: self.buy_product,
             goto: self.goto,
             do_search: self.get_products,
-            pay: self.pay
+            pay: self.pay,
+            store_order: self.store_order
         }
 
     });
