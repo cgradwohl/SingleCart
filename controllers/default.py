@@ -91,7 +91,8 @@ def view_orders():
 @auth.requires_login()
 def store_order():
     o_id = db.orders.insert(
-        order_json = request.vars.order_json
+        order_json = request.vars.order_json,
+        username = auth.user_id
     )
     o = db.orders(o_id)
     return response.json(dict(order=o))
